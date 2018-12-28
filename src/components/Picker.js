@@ -2,17 +2,19 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class Picker extends Component {
+  handleChange = (e) => {
+    this.props.onChange(e.target.value);
+  };
+
   render() {
-    const { value, onChange, options } = this.props
+    const { value, options } = this.props
 
     return (
       <span>
         <h1>{value}</h1>
-        <select onChange={e => onChange(e.target.value)} value={value}>
+        <select onChange={this.handleChange} value={value}>
           {options.map(option => (
-            <option value={option} key={option}>
-              {option}
-            </option>
+            <option value={option} key={option}>{option}</option>
           ))}
         </select>
       </span>
